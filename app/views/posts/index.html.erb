@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Posts</h1>
+<!--<h1>Listing Posts</h1>
 
 <table>
   <thead>
@@ -23,7 +23,31 @@
     <% end %>
   </tbody>
 </table>
-
+<h1>Posts</h1>
+<hr />
+<% @posts.each do |post| %>
+  <h2><%= post.title %></h2><h5><%=post.created_at%></h5>
+  <p>
+  <%= post.body %>
+  </p>
+<% end %>
+<hr />
+<%= paginate @posts %>
+<%= page_entries_info @posts %>-->
 <br>
 
 <%= link_to 'New Post', new_post_path %>
+
+<% @posts.each do |post| %>
+<div class="blog-post">
+<h2 class="blog-post-title"><%= post.title %></h2>
+<p class="blog-post-meta"><%=post.created_at.strftime("Posted on %B %d, %Y at %I:%M%p")%> by <a href="#">iTony</a></p>
+<%= post.body %>
+</div><!-- /.blog-post -->
+<% end %>
+<hr />
+
+<ul class="pager">
+<li><%= paginate @posts %></li>
+</ul>
+<%= page_entries_info @posts %>
